@@ -20,7 +20,7 @@ v-container
     align="center"
     justify="center"
   )
-      .display-2.font-weight-light.my-3 Hi, I'm an LTE-M connected plant.
+      .display-2.font-weight-light.my-3 Hi, I'm a LTE-M connected plant.
       .title.font-weight-light.mt-4.mb-12 I send data every 30s about my surroundings and well being so that my human can hopefully take care of me.
 
   v-row.pt-12(
