@@ -1,0 +1,2 @@
+export const APP_SET_LATEST = 'APP_SET_LATEST'
+export const APP_SET_HISTOGRAM = 'APP_SET_HISTOGRAM'
