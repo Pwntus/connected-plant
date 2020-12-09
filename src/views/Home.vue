@@ -12,6 +12,13 @@ v-container
       contain
     )
 
+  v-row.white--text(
+    align="center"
+    justify="center"
+  )
+      .display-2.font-weight-light.my-3 Hi, I'm an LTE-M connected plant.
+      .title.font-weight-light.mt-4.mb-12 I send data every 30s about my surroundings and well being so that my human can hopefully take care of me.
+
   v-row.pt-12(
     align="center"
     justify="center"
@@ -161,7 +168,7 @@ export default {
       this.gauge_air_humidity.value = val.air_humidity
       this.gauge_air_temperature.value = val.air_temperature
 
-      this.last_updated = 'now'
+      this.last_updated = moment.unix(val.timestamp).fromNow()
     },
     histogram(val) {
       this.graph_soil_moisture.data = val.map(

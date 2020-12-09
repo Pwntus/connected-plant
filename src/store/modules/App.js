@@ -100,7 +100,11 @@ const actions = {
         }
       })
       result = response.shadow.state.reported
-      result.timestamp = response.shadow.timestamp
+      result.timestamp = get(
+        response,
+        'shadow.metadata.reported.plant.type.timestamp',
+        0
+      )
     } catch (e) {
       throw e
     } finally {

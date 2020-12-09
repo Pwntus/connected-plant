@@ -1,4 +1,7 @@
 module.exports = {
+  transpileDependencies: ['vuetify'],
   publicPath: '/connected-plant/',
-  transpileDependencies: ['vuetify']
+  pwa: {
+    iconPaths: null
+  }
 }
