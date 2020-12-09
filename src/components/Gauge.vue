@@ -1,13 +1,12 @@
 <template lang="pug">
 .gauge(:class="{ visible: config.value !== null }")
-  .font-weight-light {{ config.title }}
   vue-circle(
     :progress="percent"
     :fill="{ color: threshold.color }"
     :size="300"
     :thickness="15"
     line-cap="round"
-    empty-fill="rgba(0, 0, 0, .2)"
+    empty-fill="rgba(0, 0, 0, .3)"
     insert-mode="append"
     :show-percent="false"
     ref="roundGauge"
@@ -15,7 +14,8 @@
     .font-weight-light(:style="{ color: threshold.color }")
       | {{ threshold.text }}
       br
-      span {{ config.value }} {{ config.suffix }}
+      b {{ config.value }} {{ config.suffix }}
+  .font-weight-light {{ config.title }}
 </template>
 
 <script>
@@ -71,7 +71,6 @@ export default {
     opacity 1
 
   .font-weight-light
-    padding-top 10px
     line-height 10px
     display block
 
@@ -100,6 +99,6 @@ export default {
       margin 0
       padding 0
 
-      span
-        font-size 18px
+      b
+        font-size 20px
 </style>

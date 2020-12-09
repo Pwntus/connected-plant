@@ -32,8 +32,9 @@ export default {
       const localOptions = {
         title: {
           text: this.config.title,
+          align: 'left',
           style: {
-            color: this.config.color,
+            color: '#FFF',
             fontSize: '15px'
           }
         },
@@ -47,7 +48,7 @@ export default {
         colors: [this.config.color],
         plotOptions: {
           spline: {
-            lineWidth: 1,
+            lineWidth: 2,
             turboThreshold: 0,
             animation: {
               duration: 0
@@ -95,10 +96,9 @@ export default {
         },
         xAxis: {
           type: 'datetime',
-          tickColor: this.config.color,
           labels: {
             style: {
-              color: this.config.color
+              color: '#e0e0e0'
             }
           }
         },
@@ -108,7 +108,7 @@ export default {
           endOnTick: false,
           labels: {
             style: {
-              color: this.config.color
+              color: '#e0e0e0'
             }
           }
         }

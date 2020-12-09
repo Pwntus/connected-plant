@@ -2,53 +2,68 @@
 v-container
   init-app
 
-  v-row.py-6(
-    align="center"
-    justify="center"
-  )
-    video(
-      width="250"
-      autoplay loop muted
-    )
-      source(
-        src="../assets/logo.webm"
-        type="video/webm"
+  v-row.py-12.mb-12(justify="center")
+    v-col(cols="3")
+      video(autoplay loop muted)
+        source(
+          src="../assets/logo.webm"
+          type="video/webm"
+        )
+        img(src="../assets/logo.png")
+    v-col(cols="12" md="9" lg="6")
+      .text-h2.font-weight-bold.mb-3 Hi, I'm an LTE-M connected plant.
+      .text-h6.font-weight-light.grey--text.text--lighten-2.mb-6 I send data every 30s about my surroundings and well-being so that my human can hopefully take care of me.
+      a.text-h6.font-weight-bold(
+        href="https://github.com/Pwntus/connected-plant"
+        title="Pwntus/connected-plant"
+        target="_new"
       )
-      img(src="../assets/logo.png")
+        v-icon.mb-1(left dark large) mdi-github
+        | Check out how I was made on GitHub
+    v-spacer
 
-  v-row.white--text(
+  v-row.mb-6(no-gutters)
+    v-col
+      .text-h4.font-weight-bold My current stats
+    v-col.text-right
+      v-chip(
+        v-if="last_updated"
+        color="grey"
+        outlined small
+      )
+        v-icon(left small) mdi-refresh
+        | Updated {{ last_updated }}
+    v-col(cols="12")
+      .text-subtitle-1.font-weight-light.grey--text.text--lighten-2 Latest reported value, updated live
+
+  v-row.pb-12(
     align="center"
     justify="center"
   )
-      .display-2.font-weight-light.my-3 Hi, I'm a LTE-M connected plant.
-      .title.font-weight-light.mt-4.mb-12 I send data every 30s about my surroundings and well being so that my human can hopefully take care of me.
-
-  v-row.pt-12(
-    align="center"
-    justify="center"
-  )
-    v-col(cols="12" md="3")
+    v-col(cols="12" sm="6" md="3")
       gauge.square(:config="gauge_soil_moisture")
-    v-col(cols="12" md="3")
+    v-col(cols="12" sm="6" md="3")
       gauge.square(:config="gauge_soil_temperature")
-    v-col(cols="12" md="3")
+    v-col(cols="12" sm="6" md="3")
       gauge.square(:config="gauge_air_humidity")
-    v-col(cols="12" md="3")
+    v-col(cols="12" sm="6" md="3")
       gauge.square(:config="gauge_air_temperature")
 
-  v-row.pt-12.pb-6(
-    align="center"
-    justify="center"
-  )
-    v-chip(
-      v-if="last_updated"
-      color="#61aa02"
-      outlined small
-    )
-      v-icon(left small) mdi-refresh
-      | Updated {{ last_updated }}
+  v-row.pt-12.mt-6.mb-4(no-gutters)
+    v-col
+      .text-h4.font-weight-bold Stats over time
+    v-col.text-right
+      v-chip(
+        v-if="last_updated_histogram"
+        color="grey"
+        outlined small
+      )
+        v-icon(left small) mdi-refresh
+        | Updated {{ last_updated_histogram }}
+    v-col(cols="12")
+      .text-subtitle-1.font-weight-light.grey--text.text--lighten-2 As viewed over 24h, aggregated over 5m
 
-  v-row.py-12(
+  v-row.pb-12(
     align="center"
     justify="center"
   )
@@ -78,6 +93,7 @@ export default {
   },
   data: () => ({
     last_updated: null,
+    last_updated_histogram: null,
     last_updated_timeout: null,
     gauge_soil_moisture: {
       value: null,
@@ -194,12 +210,21 @@ export default {
           y: air_temperature
         })
       )
+
+      if (val.length <= 0) return
+      const { timestamp } = val[val.length - 1]
+      this.last_updated_histogram = moment.unix(timestamp / 1000).fromNow()
     }
   },
   mounted() {
     this.last_updated_timeout = setInterval(() => {
       if (this.latest.timestamp)
         this.last_updated = moment.unix(this.latest.timestamp).fromNow()
+
+      if (this.histogram.length <= 0) return
+      const { timestamp } = this.histogram[this.histogram.length - 1]
+      if (timestamp)
+        this.last_updated_histogram = moment.unix(timestamp / 1000).fromNow()
     }, 1000)
   },
   beforeDestroy() {
@@ -210,9 +235,20 @@ export default {
 
 <style lang="stylus" scoped>
 .container
+  color #ffffff
+
+  a, a:visited, a:active
+    text-decoration none
+    color #FFF
+
+  video
+    width 100%
+    max-width 250px
+
   .square
     width 200px
     height 200px
+    margin 0 auto
 
   .rectangle
     height 200px

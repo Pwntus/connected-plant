@@ -26,8 +26,9 @@ const HIGHCHARTS_GLOBAL = {
     timezoneOffset: -60 // UTC+1
   },
   xAxis: {
-    lineColor: '#252624',
-    gridLineColor: '#252624',
+    lineColor: '#161616',
+    gridLineColor: '#161616',
+    tickColor: '#161616',
     labels: {
       style: {
         color: '#FFF'
@@ -36,8 +37,8 @@ const HIGHCHARTS_GLOBAL = {
   },
   yAxis: {
     title: null,
-    lineColor: '#252624',
-    gridLineColor: '#252624',
+    lineColor: '#161616',
+    gridLineColor: '#161616',
     labels: {
       style: {
         color: '#FFF'
