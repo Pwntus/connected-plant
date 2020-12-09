@@ -6,11 +6,15 @@ v-container
     align="center"
     justify="center"
   )
-    v-img(
-      :src="require('../assets/logo.png')"
-      max-width="250"
-      contain
+    video(
+      width="250"
+      autoplay loop muted
     )
+      source(
+        src="../assets/logo.webm"
+        type="video/webm"
+      )
+      img(src="../assets/logo.png")
 
   v-row.white--text(
     align="center"
