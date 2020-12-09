@@ -11,8 +11,8 @@ v-container
         )
         img(src="../assets/logo.png")
     v-col(cols="12" md="9" lg="6")
-      .text-h2.font-weight-bold.mb-3 Hi, I'm an LTE-M connected plant.
-      .text-h6.font-weight-light.grey--text.text--lighten-2.mb-6 I send data every 30s about my surroundings and well-being so that my human can hopefully take care of me.
+      .text-h2.font-weight-bold.mb-8 Hi, I'm an LTE-M connected plant.
+      .text-h6.font-weight-light.grey--text.text--lighten-2.mb-10 I send data every 30s about my surroundings and well-being so that my human can hopefully take care of me.
       a.text-h6.font-weight-bold(
         href="https://github.com/Pwntus/connected-plant"
         title="Pwntus/connected-plant"
@@ -22,7 +22,7 @@ v-container
         | Check out how I was made on GitHub
     v-spacer
 
-  v-row.mb-6(no-gutters)
+  v-row.mb-6.pt-12(no-gutters)
     v-col
       .text-h4.font-weight-bold My current stats
     v-col.text-right
@@ -33,7 +33,7 @@ v-container
       )
         v-icon(left small) mdi-refresh
         | Updated {{ last_updated }}
-    v-col(cols="12")
+    v-col.mt-3(cols="12")
       .text-subtitle-1.font-weight-light.grey--text.text--lighten-2 Latest reported value, updated live
 
   v-row.pb-12(
@@ -49,7 +49,8 @@ v-container
     v-col(cols="12" sm="6" md="3")
       gauge.square(:config="gauge_air_temperature")
 
-  v-row.pt-12.mt-6.mb-4(no-gutters)
+  v-row.mt-8
+  v-row.pt-12.mt-12.mb-4(no-gutters)
     v-col
       .text-h4.font-weight-bold Stats over time
     v-col.text-right
@@ -60,7 +61,7 @@ v-container
       )
         v-icon(left small) mdi-refresh
         | Updated {{ last_updated_histogram }}
-    v-col(cols="12")
+    v-col.mt-3(cols="12")
       .text-subtitle-1.font-weight-light.grey--text.text--lighten-2 As viewed over 24h, aggregated over 5m
 
   v-row.pb-12(
@@ -116,7 +117,7 @@ export default {
       suffix: '°C',
       thresholds: [
         { th: 100, text: 'Warm', color: '#ff0000' },
-        { th: 22, text: 'Moderate', color: '#61aa02' },
+        { th: 22.1, text: 'Moderate', color: '#61aa02' },
         { th: 20, text: 'Cold', color: '#071b54' },
         { th: 15, text: 'Very cold', color: '#990099' }
       ]
