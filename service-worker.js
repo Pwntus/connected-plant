@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/connected-plant/precache-manifest.bd161d14956cac179b3f9789cdfbd7e4.js"
+  "/connected-plant/precache-manifest.6cf9b38f42e6904d8f1106e0b2eb4990.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "connected-plant"});
