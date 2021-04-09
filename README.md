@@ -2,6 +2,8 @@
 
 LTE-M connected Monstera plant.
 
+:star: Credits to [@robingranqvist](https://github.com/robingranqvist) for the plant graphics.
+
 ![Preview](./preview.png)
 
 ## MIC Uplink Transform
